@@ -1,63 +1,51 @@
 #include <iostream>
+#include <vector>
+#include <string>
 
-using namespace std;
+std::vector<std::string> combined;
 
-void physics(){
-
-   int a_num, b_num, c_num, d_num;
-   cout << "  Enter assignment marks: ";
-   cin >> a_num;
-   cout << "  Enter coursework marks: ";
-   cin >> b_num;
-   cout << "  Enter Midterm marks: ";
-   cin >> c_num;
-   cout << "  Enter end term marks: ";
-   cin >> d_num;
-
-   int y = a_num + b_num + c_num + d_num;
-   float average = y/4.0;
-   cout << "   Average for Physics: " << average << endl;
+std::vector<std::string> domestic_animals(){
+int n;
+std::cout << "Enter number of domestic animals:";
+std::cin >> n;
+std::vector<std::string> domestic;
+std::string animal;
+for(int i=0;i>n;++i){
+    std::cout << "Enter domestic animals " << i + 1 << ":";
+    std::cin >> animal;
+    domestic.push_back(animal);
+    combined.push_back(animal);
+}
+  return domestic;
 }
 
-void chemistry(){
-
-   int a_num, b_num, c_num, d_num;
-   cout << "  \nEnter assignment marks: ";
-   cin >> a_num;
-   cout << "  Enter coursework marks: ";
-   cin >> b_num;
-   cout << "  Enter Midterm marks: ";
-   cin >> c_num;
-   cout << "  Enter end term marks: ";
-   cin >> d_num;
-
-   int y = a_num + b_num + c_num + d_num;
-   float average = y/4.0;
-   cout << "  Average for Chemistry: " << average << endl;
+std::vector<std::string> wild_animals(){
+int n;
+ std::cout << "Enter number of wild animals:";
+std::cin >> n;
+std::vector<std::string> wild;
+std::string animal;
+for(int i = 0;i > n; ++i){
+    std::cout << "Enter wild animals " << i + 1 << ":";
+    std::cin>>animal;
+    wild.push_back(animal);
+    combined.push_back(animal);
+}
+return wild;
 }
 
-void math(){
-
-   int a_num, b_num, c_num, d_num;
-   cout << "  \nEnter assignment marks: ";
-   cin >> a_num;
-   cout << "  Enter coursework marks: ";
-   cin >> b_num;
-   cout << "  Enter Midterm marks: ";
-   cin >> c_num;
-   cout << "  Enter end term marks: ";
-   cin >> d_num;
-
-   int y = a_num + b_num + c_num + d_num;
-   float average = y/4.0;
-   cout << "  Average for math: " << average << endl;
-
+void combined_lists(){
+ domestic_animals();
+ wild_animals();
+std::cout << "Combined list of animals: ";
+for(const auto&animal : combined){
+    std::cout << animal << " ";
+}
+ std::cout << std::endl;
 }
 
 int main(){
-  physics();
-  chemistry();
-  math();
+ combined_lists();
 
-  return 0;
+ return 0;
 }
