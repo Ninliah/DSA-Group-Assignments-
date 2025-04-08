@@ -1,51 +1,91 @@
 #include <iostream>
-#include <vector>
-#include <string>
+using namespace std;
+#define MAX 5
 
-std::vector<std::string> combined;
+class Stack {
+    int TOP;
+    int arr[MAX];
 
-std::vector<std::string> domestic_animals(){
-int n;
-std::cout << "Enter number of domestic animals:";
-std::cin >> n;
-std::vector<std::string> domestic;
-std::string animal;
-for(int i=0;i>n;++i){
-    std::cout << "Enter domestic animals " << i + 1 << ":";
-    std::cin >> animal;
-    domestic.push_back(animal);
-    combined.push_back(animal);
-}
-  return domestic;
-}
+public:
+    Stack() {
+        TOP = -1;
+    }
 
-std::vector<std::string> wild_animals(){
-int n;
- std::cout << "Enter number of wild animals:";
-std::cin >> n;
-std::vector<std::string> wild;
-std::string animal;
-for(int i = 0;i > n; ++i){
-    std::cout << "Enter wild animals " << i + 1 << ":";
-    std::cin>>animal;
-    wild.push_back(animal);
-    combined.push_back(animal);
-}
-return wild;
-}
+    void push(int x) {
+        if (TOP == MAX - 1) {
+            cout << "Stack Overflow" << endl;
+        } else {
+            TOP = TOP + 1;
+            arr[TOP] = x;
+        }
+    }
 
-void combined_lists(){
- domestic_animals();
- wild_animals();
-std::cout << "Combined list of animals: ";
-for(const auto&animal : combined){
-    std::cout << animal << " ";
-}
- std::cout << std::endl;
-}
+    int pop() {
+        if (TOP == -1) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        }
+        int val = arr[TOP];
+        TOP = TOP - 1;
+        return val;
+    }
 
-int main(){
- combined_lists();
+    int peek() {
+        if (TOP == -1) {
+            cout << "Stack Underflow" << endl;
+            return -1;
+        } else {
+            return arr[TOP];
+        }
+    }
 
- return 0;
+    void printStack() const {
+        if (TOP == -1) {
+            cout << "Stack is empty" << endl;
+        } else {
+            cout << "Stack elements: ";
+            for (int i = 0; i <= TOP; i++) {
+                cout << arr[i] << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Stack s;
+    int choice, value;
+
+    do {
+        cout << "\nMenu:\n1. Push\n2. Pop\n3. Peek\n4. Print Stack\n5. Exit\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Enter value to push: ";
+            cin >> value;
+            s.push(value);
+            break;
+        case 2:
+            value = s.pop();
+            if (value != -1)
+                cout << "Popped: " << value << endl;
+            break;
+        case 3:
+            value = s.peek();
+            if (value != -1)
+                cout << "Top element: " << value << endl;
+            break;
+        case 4:
+            s.printStack();
+            break;
+        case 5:
+            cout << "Exiting..." << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please try again!" << endl;
+        }
+    } while (choice != 5);
+
+    return 0;
 }
